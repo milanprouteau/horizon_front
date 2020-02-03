@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class Post extends Component{
 
@@ -15,7 +16,9 @@ class Post extends Component{
         let {btntext} = this.props;
         return (
             <tr>
-                <td>{_id}</td>
+                <td>
+                    <Link to={`/posts/${_id}`}>{_id}</Link>
+                </td>
                 <td>{title}</td>
                 <td>{content}</td>
                 <td><button className="btn btn-danger" onClick={() => this.props.delete(_id)}>{btntext}</button></td>                            
