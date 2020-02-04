@@ -3,7 +3,21 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component{
 
+    state = {
+        isAuth: false
+    }
+
+    componentDidMount(){
+        localStorage.getItem('token') && this.setState({isAuth: true});
+    }
+
+    logout(){
+        localStorage.removeItem('token');
+        this.setState({isAuth: false});
+    }
+
     render(){
+        let {isAuth} = this.state;
         return (
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">Blog</a>
@@ -12,17 +26,29 @@ class Header extends Component{
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <Link className="nav-link" to={'/'}>Home</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link className="nav-link" to={'/login'}>Connexion</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link className="nav-link" to={'/register'}>Inscription</Link>
-                        </li>
-                    </ul>
+                    {
+                        isAuth ?
+                        (
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <Link className="nav-link" to={'/'}>Home</Link>
+                                </li>
+                                <li class="nav-item">
+                                    <a className="nav-link" onClick={() => this.logout()}>Logout</a>
+                                </li>
+                            </ul>
+                        )        
+                        : (
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <Link className="nav-link" to={'/login'}>Connexion</Link>
+                                </li>
+                                <li class="nav-item">
+                                    <Link className="nav-link" to={'/register'}>Inscription</Link>
+                                </li>                     
+                            </ul>
+                        )
+                    }
                 </div>
             </nav>
         )

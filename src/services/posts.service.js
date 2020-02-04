@@ -6,7 +6,8 @@ class PostService{
         let init = {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         }
         let call = await fetch(`${baseUrl}/posts`, init);
@@ -17,7 +18,8 @@ class PostService{
         let init = {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         }
         let call = await fetch(`${baseUrl}/posts/${id}`, init);
@@ -28,7 +30,8 @@ class PostService{
         let init = {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(body)
         }
@@ -40,7 +43,8 @@ class PostService{
         let init = {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         }
         let call = await fetch(`${baseUrl}/posts/${id}`, init);
