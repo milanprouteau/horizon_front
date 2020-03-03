@@ -16,11 +16,11 @@ class Header extends Component{
         this.setState({isAuth: false});
     }
 
+    // display the menu to log in or log out
     render(){
         let {isAuth} = this.state;
         return (
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Blog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

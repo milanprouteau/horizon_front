@@ -17,20 +17,16 @@ class Login extends Component{
     async submit(e){
         e.preventDefault();
         
-        console.log("submit");
 
         let response = await UserService.auth(this.state);
-        //Good Email / Password
         if(response.ok){
             let data = await response.json();
             localStorage.setItem('token', data.token);
             this.props.history.push('/');
-        }else{
-            //......
         }
-
     }
 
+    // display form connexion
     render(){
         return (
             <div className="container">

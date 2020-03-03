@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 class Register extends Component{
 
+    // display register form
     render(){
         return (
             <div className="container">

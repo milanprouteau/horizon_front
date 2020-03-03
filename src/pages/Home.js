@@ -1,63 +1,32 @@
 import React, {Component} from 'react';
-import PostService from '../services/posts.service';
-import Post from '../components/Post';
+import { Link } from 'react-router-dom';
+
+import Logo from "../logo.png"
+
+import "./style.scss";
 
 class Home extends Component{
 
-    state = {
-        title: "Mon super titre",
-        posts: []
-    } 
-
-    async componentDidMount(){
-        let response = await PostService.list();
-        if(response.ok){
-            let data = await response.json();
-            console.log(data);
-            this.setState({posts: data.posts});
-        }
-    }
-
-    async deletePost(id){
-        let response = await PostService.delete(id);
-        if(response.ok){
-            let posts = this.state.posts;
-            let index = posts.findIndex(post => post._id == id);
-            posts.splice(index, 1);
-            this.setState({posts: posts});
-        }
-    }
-
+    // display the list of the continent which they will redirect to there related city
     render(){        
         return (
-            <div className="container">
-                <h1>{this.state.title}</h1>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Titre</th>
-                            <th>Contenu</th>
-                            <th>Actions</th>                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.posts.length > 0 ? 
-                                this.state.posts.map(item => {
-                                    return (
-                                        <Post data={item} btntext="Supprimer" delete={(id) => this.deletePost(id) }/>
-                                    )
-                                })
-                            : null
-                        }
-                    </tbody>
-                </table> 
-
+            <div>
+                <div className="logo"><img className="image" src={Logo}></img></div>
+                <h1 className="title">HORIZON</h1>
+                <div className="description">Let's plan your next trip !</div>
+                <div className="continent__content">
+                    <ul className="continent__list">
+                        <Link className="item" to={`/continent/africa`}>Africa</Link>
+                        <Link className="item" to={`/continent/asia`}>Asia</Link>
+                        <Link className="item" to={`/continent/europe`}>Europe</Link>
+                        <Link className="item" to={`/continent/northamerica`}>North America</Link>
+                        <Link className="item" to={`/continent/southamerica`}>South America</Link>
+                        <Link className="item" to={`/continent/oceania`}>Oceania</Link>
+                    </ul>
+                </div>
             </div>
         )
     }
-
 }
 
 export default Home;

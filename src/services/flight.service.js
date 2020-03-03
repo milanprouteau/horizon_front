@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3005";
 
-class PostService{
+class FlightService{
 
     static async list(){
         let init = {
@@ -10,21 +10,21 @@ class PostService{
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         }
-        let call = await fetch(`${baseUrl}/posts`, init);
+        let call = await fetch(`${baseUrl}/flights`, init);
         return call;
     }
 
     static async details(id){
-        let init = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
-            }
-        }
-        let call = await fetch(`${baseUrl}/posts/${id}`, init);
-        return call;
-    }
+         let init = {
+             method: "GET",
+             headers: {
+                 "Content-Type": "application/json",
+                 "Authorization": `Bearer ${localStorage.getItem('token')}`
+             }
+         }
+         let call = await fetch(`${baseUrl}/flights/${id}`, init);
+         return call;
+     }
 
     static async update(id, body){
         let init = {
@@ -35,7 +35,7 @@ class PostService{
             },
             body: JSON.stringify(body)
         }
-        let call = await fetch(`${baseUrl}/posts/${id}`, init);
+        let call = await fetch(`${baseUrl}/flights/${id}`, init);
         return call;
     }
 
@@ -47,10 +47,10 @@ class PostService{
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
             }
         }
-        let call = await fetch(`${baseUrl}/posts/${id}`, init);
+        let call = await fetch(`${baseUrl}/flights/${id}`, init);
         return call;
     }
 
 }
 
-export default PostService;
+export default FlightService;
